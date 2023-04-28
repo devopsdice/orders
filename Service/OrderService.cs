@@ -18,5 +18,10 @@ namespace Order.Service
             orderData = await _orderRepository.SaveOrderAsync(orderData);
             _messageBrokerService.PublishMessage(orderData);
         }
+
+        public async Task<int> UpdateOrderAsync(OrderData orderData)
+        {
+            return await _orderRepository.UpdateOrderAsync(orderData);
+        }
     }
 }

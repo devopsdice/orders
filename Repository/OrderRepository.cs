@@ -12,7 +12,6 @@ namespace Order.Repository
 
         public OrderRepository(IDapperContext context)
         {
-
             _context = context;
         }
 
@@ -34,6 +33,23 @@ namespace Order.Repository
             orderData.OrderId = result;
 
             return orderData;
+        }
+
+        public async Task<int> UpdateOrderAsync(OrderData orderData)
+        {
+
+            int result = 0;
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@OrderId", orderData.OrderId);
+            parameters.Add("@Status", orderData.Status);
+
+            using (var connection = _context.CreateConnection())
+            {
+                result = await connection.ExecuteScalarAsync<int>(OrderRepositoryConstant.Update, parameters);
+            }
+            
+            return result;
         }
     }
 }
