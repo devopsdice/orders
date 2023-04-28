@@ -16,7 +16,7 @@
             connectionFactory = new ConnectionFactory
             {
                 Uri =
-                new Uri("amqp://guest:guest@localhost:5672/")
+                new Uri("amqp://guest:guest@34.121.163.121:5672/")
             };
             connection = connectionFactory.CreateConnection();
             model = connection.CreateModel();

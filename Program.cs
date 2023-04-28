@@ -1,8 +1,10 @@
 using Order.MessageBroker;
 using Order.Repository;
+using Order.Repository.Base;
 using Order.Service;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<IDapperContext, DapperContext>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddSingleton<IMessageBrokerService, RabbitMQService>();

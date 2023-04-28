@@ -10,14 +10,14 @@ namespace Order.Controllers
     public class OrderController : ControllerBase
     {
         private IOrderService _orderService;
-        public OrderController(IOrderService orderService )
+        public OrderController(IOrderService orderService)
         {
-           _orderService= orderService;
+            _orderService = orderService;
         }
         [HttpPost]
-        public void post([FromBody] OrderData orderData)
+        public async Task postAsync([FromBody] OrderData orderData)
         {
-            _orderService.AddOrder(orderData);
+            await _orderService.AddOrderAsync(orderData);
             // Save Order and Trigger Event
         }
     }

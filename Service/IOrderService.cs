@@ -4,6 +4,6 @@ namespace Order.Service
 {
     public interface IOrderService
     {
-        void AddOrder(OrderData orderData);
+        Task AddOrderAsync(OrderData orderData);
     }
 }

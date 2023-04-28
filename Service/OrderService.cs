@@ -4,7 +4,7 @@ using Order.Repository;
 
 namespace Order.Service
 {
-    public class OrderService:IOrderService
+    public class OrderService : IOrderService
     {
         private IOrderRepository _orderRepository;
         private IMessageBrokerService _messageBrokerService;
@@ -13,9 +13,9 @@ namespace Order.Service
             _orderRepository = orderRepository;
             _messageBrokerService = messageBrokerService;
         }
-        public void AddOrder(OrderData orderData)
+        public async Task AddOrderAsync(OrderData orderData)
         {
-            _orderRepository.SaveOrder(orderData);
+            orderData = await _orderRepository.SaveOrderAsync(orderData);
             _messageBrokerService.PublishMessage(orderData);
         }
     }

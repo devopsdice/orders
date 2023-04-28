@@ -3,6 +3,6 @@
     using Model;
     public interface IOrderRepository
     {
-        void SaveOrder(OrderData orderData);
+        Task<OrderData> SaveOrderAsync(OrderData orderData);
     }
 }
